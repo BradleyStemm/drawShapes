@@ -17,7 +17,7 @@ public class DrawPanel extends JPanel
 				this.SIZE = SIZE;
 				
 				//setBackground(Color.WHITE);// read line 57 below and try 
-				shapes = new Shape[ 15 + randomNumbers.nextInt(10)];
+				shapes = new Shape[ 15 + randomNumbers.nextInt(SIZE/60)];
 				
 				for ( int count = 0; count < shapes.length; count++)
 					{
@@ -35,13 +35,13 @@ public class DrawPanel extends JPanel
 									{
 										case "RECT":
 											{
-												shapes[count] = new Rectangle(x1, y1,x2,y2,color,randomNumbers.nextBoolean());
+												shapes[count] = new Rectangle(x1, y1,x2,y2,color,randomNumbers.nextBoolean() || randomNumbers.nextBoolean());
 												break randomShapeStructure;
 											}
 									
 										case "OVAL":
 											{
-												shapes[count] = new Oval(x1, y1,x2,y2,color, randomNumbers.nextBoolean());
+												shapes[count] = new Oval(x1, y1,x2,y2,color, randomNumbers.nextBoolean() || randomNumbers.nextBoolean());
 												break randomShapeStructure;
 											}
 											
@@ -54,9 +54,7 @@ public class DrawPanel extends JPanel
 									}
 								
 							}
-						//Try uncommenting these and comment out the background set on line 27 to see some additional functionality
-						  
-						  
+						//Try uncommenting these and comment out the background set on line 19 to see some additional functionality		  
 						 	color = new Color((color.getRed()+this.color.getRed())/3,
 									(color.getGreen()+this.color.getGreen())/3,
 									(color.getBlue()+this.color.getBlue())/3);
@@ -72,8 +70,7 @@ public class DrawPanel extends JPanel
 				for(Shape shape : shapes)
 						{
 							shape.draw(g);
-							shape.printDetails();
-							
+							shape.printDetails();	
 						}
 				
 			}
