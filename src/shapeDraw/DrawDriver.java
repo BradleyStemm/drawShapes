@@ -4,36 +4,36 @@ import javax.swing.JFrame;
 
 public class DrawDriver 
 	{
-
+		static int SIZE = 900;
+		
+		//DrawDriver is the constructor for the window which uses the static SIZE
 		public DrawDriver()
 			{
-				int SIZE = Integer.parseInt("900");
-				DrawPanel panel = new DrawPanel(SIZE);
-				JFrame application = new JFrame();
-				application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				application.add(panel);
-				application.setSize(SIZE,SIZE);
-				application.setVisible(true);
-				application.setResizable(false);
-				
+				JFrame application = defaultWindow(SIZE);					
 			}
-	
+
 		public String toString()
 			{
 				return "Draw SimDriver for shape drawing app";
 			}
 		
+		//If the target executable is this file then a DrawDriver will be instantiated
 		public static void main(String[] args) 
 			{
-				int SIZE = Integer.parseInt("900");
-				DrawPanel panel = new DrawPanel(SIZE);
-				JFrame application = new JFrame();
-				application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				application.add(panel);
-				application.setSize(SIZE,SIZE);
-				application.setVisible(true);
-				application.setResizable(false);
-				
+				DrawDriver application = new DrawDriver();
+			}
+		
+		//Sets up a default window size object and behavior
+		public static JFrame defaultWindow(int windowSize)
+			{
+				JFrame tempFrame = new JFrame(); 
+				DrawPanel panel = new DrawPanel(windowSize);						//I am passing in window size so that can be handled dynamically
+				tempFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+				tempFrame.add(panel);
+				tempFrame.setSize(windowSize, windowSize);
+				tempFrame.setResizable(false);
+				tempFrame.setVisible(true);
+				return tempFrame;
 			}
 
 	}
