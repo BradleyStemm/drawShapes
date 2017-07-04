@@ -9,7 +9,7 @@ public class DrawDriver
 		//DrawDriver is the constructor for the window which uses the static SIZE
 		public DrawDriver()
 			{
-				JFrame application = defaultWindow(SIZE);					
+				JFrame application = defaultWindow(SIZE);				
 			}
 
 		public String toString()

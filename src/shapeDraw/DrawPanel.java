@@ -10,59 +10,15 @@ public class DrawPanel extends JPanel
 		private static final long serialVersionUID = -5832368116397234021L;
 		private Random randomNumbers = new Random();
 		private Shape[] shapes;
-		int SIZE = 1200;
-		Color color = Color.WHITE;
-		public DrawPanel(int SIZE)
+		int SIZE;
+		Color backgroundColor = null;
+		public DrawPanel(int defaultSize)
 			{
-				this.SIZE = SIZE;
-				
-				//setBackground(Color.WHITE);// read line 57 below and try 
-				shapes = new Shape[ 15 + randomNumbers.nextInt(SIZE/60)];
-				
-				for ( int count = 0; count < shapes.length; count++)
-					{
-						int x1 = randomNumbers.nextInt(SIZE);
-						int y1 = randomNumbers.nextInt(SIZE);
-						int x2 = randomNumbers.nextInt(SIZE);
-						int y2 = randomNumbers.nextInt(SIZE);
-						
-						Color color = new Color( randomNumbers.nextInt(256),randomNumbers.nextInt(256),randomNumbers.nextInt(256));
-
-						String names[] = {"RECT","OVAL","LINE"};
-						randomShapeStructure:
-							{
-								switch (names[randomNumbers.nextInt(3)])
-									{
-										case "RECT":
-											{
-												shapes[count] = new Rectangle(x1, y1,x2,y2,color,randomNumbers.nextBoolean() || randomNumbers.nextBoolean());
-												break randomShapeStructure;
-											}
-									
-										case "OVAL":
-											{
-												shapes[count] = new Oval(x1, y1,x2,y2,color, randomNumbers.nextBoolean() || randomNumbers.nextBoolean());
-												break randomShapeStructure;
-											}
-											
-										case "LINE":
-											{
-												shapes[count] =  new Line(x1,y1,x2,y2,color);
-												break randomShapeStructure;
-											}
-											
-									}
-								
-							}
-						//Try uncommenting these and comment out the background set on line 19 to see some additional functionality		  
-						 	color = new Color((color.getRed()+this.color.getRed())/3,
-									(color.getGreen()+this.color.getGreen())/3,
-									(color.getBlue()+this.color.getBlue())/3);
-							this.color = color;
-					}
-				
-				setBackground(this.color);
-			}
+				this.SIZE = defaultSize;
+				backgroundColor = new Color( randomNumbers.nextInt(256),randomNumbers.nextInt(256),randomNumbers.nextInt(256));
+				shapes = generateShapeArray();
+				setBackground(backgroundColor);
+			 }
 		
 		public void paintComponent(Graphics g)
 			{
@@ -73,6 +29,59 @@ public class DrawPanel extends JPanel
 							shape.printDetails();	
 						}
 				
+			}
+		
+		public Shape[] generateShapeArray()
+			{
+				Shape[] shapeSet = new Shape[ 15 + randomNumbers.nextInt(this.SIZE/60)];
+				for ( int count = 0; count < shapeSet.length; count++)
+					{	  
+						shapeSet[count] = generateRandomShape(generateThemedColor());  
+					}
+				return shapeSet;
+			}
+		
+		public Color generateThemedColor()
+			{
+				Color randomColor = new Color( randomNumbers.nextInt(256),randomNumbers.nextInt(256),randomNumbers.nextInt(256));
+				Color shapeColor = new Color((randomColor.getRed()*3+this.backgroundColor.getRed())/7,
+										(randomColor.getGreen()*3+this.backgroundColor.getGreen())/7,
+										(randomColor.getBlue()*3+this.backgroundColor.getBlue())/7);
+				return shapeColor;
+			}
+		
+		public Shape generateRandomShape(Color themeColor)
+			{
+				int x1 = randomNumbers.nextInt(SIZE);
+				int y1 = randomNumbers.nextInt(SIZE);
+				int x2 = randomNumbers.nextInt(SIZE);
+				int y2 = randomNumbers.nextInt(SIZE);
+				Shape tempShape = null;
+				String names[] = {"RECT","OVAL","LINE"};
+				randomShapeStructure:
+					{
+						switch (names[randomNumbers.nextInt(3)])
+							{
+								case "RECT":
+									{
+										tempShape = new Rectangle(x1, y1,x2,y2,themeColor,randomNumbers.nextBoolean() || randomNumbers.nextBoolean());
+										break randomShapeStructure;
+									}
+						
+								case "OVAL":
+									{
+										tempShape = new Oval(x1, y1,x2,y2,themeColor, randomNumbers.nextBoolean() || randomNumbers.nextBoolean());
+										break randomShapeStructure;
+									}
+								
+								case "LINE":
+									{
+										tempShape=  new Line(x1,y1,x2,y2,themeColor);
+										break randomShapeStructure;
+									}
+							}
+					}
+				return tempShape;
 			}
 	
 	}
