@@ -31,11 +31,9 @@ public class Line extends Shape
 		
 		@Override
 		public void draw(Graphics g)
-			{
-				
+			{	
 				g.setColor(getColor());
-				g.drawLine(getX1(), getY1(), getX2(), getY2());
-				
+				g.drawLine(getX1(), getY1(), getX2(), getY2());	
 			}
 
 	}

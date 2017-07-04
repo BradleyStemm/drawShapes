@@ -44,9 +44,9 @@ public class DrawPanel extends JPanel
 		public Color generateThemedColor()
 			{
 				Color randomColor = new Color( randomNumbers.nextInt(256),randomNumbers.nextInt(256),randomNumbers.nextInt(256));
-				Color shapeColor = new Color((randomColor.getRed()*3+this.backgroundColor.getRed())/7,
-										(randomColor.getGreen()*3+this.backgroundColor.getGreen())/7,
-										(randomColor.getBlue()*3+this.backgroundColor.getBlue())/7);
+				Color shapeColor = new Color((randomColor.getRed()*13+this.backgroundColor.getRed())/17,
+										(randomColor.getGreen()*13+this.backgroundColor.getGreen())/17,
+										(randomColor.getBlue()*13+this.backgroundColor.getBlue())/17);
 				return shapeColor;
 			}
 		
