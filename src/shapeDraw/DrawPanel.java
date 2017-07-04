@@ -12,6 +12,7 @@ public class DrawPanel extends JPanel
 		private Shape[] shapes;
 		int SIZE;
 		Color backgroundColor = null;
+		
 		public DrawPanel(int defaultSize)
 			{
 				this.SIZE = defaultSize;
@@ -28,7 +29,6 @@ public class DrawPanel extends JPanel
 							shape.draw(g);
 							shape.printDetails();	
 						}
-				
 			}
 		
 		public Shape[] generateShapeArray()
