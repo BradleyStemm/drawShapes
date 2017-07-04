@@ -19,7 +19,7 @@ public class DrawPanel extends JPanel
 				backgroundColor = new Color( randomNumbers.nextInt(256),randomNumbers.nextInt(256),randomNumbers.nextInt(256));
 				shapes = generateShapeArray();
 				setBackground(backgroundColor);
-			 }
+			}
 		
 		public void paintComponent(Graphics g)
 			{
@@ -60,7 +60,7 @@ public class DrawPanel extends JPanel
 				String names[] = {"RECT","OVAL","LINE"};
 				randomShapeStructure:
 					{
-						switch (names[randomNumbers.nextInt(3)])
+						switch (names[randomNumbers.nextInt(5)%3])
 							{
 								case "RECT":
 									{
@@ -81,6 +81,7 @@ public class DrawPanel extends JPanel
 									}
 							}
 					}
+				
 				return tempShape;
 			}
 	
